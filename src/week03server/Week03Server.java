@@ -50,7 +50,7 @@ public class Week03Server {
             }
             objectInputFile.close();
         } catch(Exception e){
-            System.out.println("Input error!");
+            //System.out.println("Input error!");
         }        
     }    
     public void go() {
