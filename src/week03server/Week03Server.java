@@ -69,21 +69,22 @@ public class Week03Server {
             try {
                 communicationSocket = serverSocket.accept();
                 Connection con = new Connection(communicationSocket);
-                con.start();
+                Thread t = new Thread(con);
+                t.start();
             } catch (Exception e) { 
                 System.out.println("Unable to spawn child socket.");
                 e.printStackTrace();
             } 
         }
     }
-    class Connection {
+    class Connection implements Runnable{
         private Socket communicationSocket = null;
         private OutputStreamWriter out = null;
         private BufferedReader in = null;
         public Connection(Socket s) {
             communicationSocket = s;
         }        
-        public void start() {
+        public void run() {
             OutputStream socketOutput = null;
             InputStream socketInput = null;
             try {
